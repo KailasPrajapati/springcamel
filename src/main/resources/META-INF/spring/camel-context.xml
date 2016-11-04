@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configures the Camel Context-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+       http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd">
+ 
+	<!-- <camelContext xmlns="http://camel.apache.org/schema/spring">
+		<route>	
+			
+			<from uri="spring-amqp:KipcastDirect:KipcastQueue:KipcastRouting?type=direct&amp;autodelete=true&amp;durable=true" />
+			<log message="Message available on a RabbitMQ Queue" />
+			<process ref="processorTest" />
+		</route>
+		
+	</camelContext> -->
+	
+	<context:component-scan base-package="com.springcamel"></context:component-scan>
+	
+	<camel:camelContext xmlns="http://camel.apache.org/schema/spring" >
+		<camel:route>
+			<camel:from uri="spring-amqp:emfNsMailExchange:emfNsDaily:emfNsDaily?type=direct&amp;autodelete=false&amp;durable=true"/>
+			<camel:log message="Daily message available on a RabbitMQ Queue" />
+			<camel:bean ref="startReceiver" method="receiveDaillyMessage"/>
+		</camel:route>
+		<camel:route>
+			<camel:from uri="spring-amqp:emfNsMailExchange:emfNsInstance:emfNsInstance?type=direct&amp;autodelete=false&amp;durable=true"/>
+			<camel:log message="Instance message available on a RabbitMQ Queue" />
+			<camel:bean ref="startReceiver" method="receiveInstanceMessage"/>
+		</camel:route>
+	</camel:camelContext>
+ 
+ 	
+	<rabbit:connection-factory id="amqpConnectionFactory" />
+	
+	<!-- <rabbit:template id="amqpTemplate" connection-factory="amqpConnectionFactory" message-converter="messageConverter" exchange="KipcastBean" /> -->
+	<!-- <rabbit:template id="amqpTemplate" connection-factory="amqpConnectionFactory" exchange="KipcastBean" /> -->
+	<!-- <rabbit:admin connection-factory="amqpConnectionFactory"/> -->
+ 
+	<bean id="amqpConnectionFactory" class="org.springframework.amqp.rabbit.connection.CachingConnectionFactory">
+	    <property name="host" value="localhost"/>
+	    <property name="port" value="5672"/>
+	    <property name="username" value="guest"/>
+	    <property name="password" value="guest"/>
+	    <!-- <property name="virtualHost" value="/"/> -->
+	</bean>
+ 
+    <!-- <bean id="jsonMessageConverter" class="amqp.spring.converter.XStreamConverter"/>
+    <bean id="textMessageConverter" class="amqp.spring.converter.StringConverter"/>
+    <bean id="messageConverter" class="amqp.spring.converter.ContentTypeConverterFactory">
+        <property name="converters">
+            <map>
+                <entry key="application/json" value-ref="jsonMessageConverter"/>
+                <entry key="application/xml" value-ref="textMessageConverter"/>
+            </map>
+        </property>
+        <property name="fallbackConverter" ref="textMessageConverter"/>
+    </bean> -->
+ 
+</beans>
