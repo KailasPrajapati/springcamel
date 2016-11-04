@@ -6,7 +6,7 @@
   <groupId>com</groupId>
   <artifactId>springcamel</artifactId>
   <packaging>jar</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
 
   <name>A Camel Spring Route</name>
   <url>http://www.myorganization.org</url>
@@ -107,6 +107,7 @@
   <scm>
 		<connection>scm:git:https://github.com/KailasPrajapati/springcamel.git</connection>
 		<developerConnection>scm:git:file://D:/kailas/eclipseWorkSpace/springcamel</developerConnection>
+    <tag>0.0.1-SNAPSHOT</tag>
   </scm>
 
   <distributionManagement>
