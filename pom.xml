@@ -105,9 +105,9 @@
   </dependencies>
 
   <scm>
-		<!-- <connection>scm:git:https://github.com/KailasPrajapati/springcamel.git</connection> -->
+		<connection>scm:git:https://github.com/KailasPrajapati/springcamel.git</connection>
 		<!-- <developerConnection>scm:git:file://D:/kailas/eclipseWorkSpace/springcamel</developerConnection> -->
-		<developerConnection>scm:git:https://github.com/KailasPrajapati/springcamel.git</developerConnection>
+		<!-- <developerConnection>scm:git:https://github.com/KailasPrajapati/springcamel.git</developerConnection> -->
     <tag>HEAD</tag>
   </scm>
 
