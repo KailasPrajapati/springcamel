@@ -15,7 +15,7 @@ public class StartReceiver {
 	
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
-		ClassPathXmlApplicationContext("META-INF/spring/camel-context.xml");
+		new ClassPathXmlApplicationContext("META-INF/spring/camel-context.xml");
 	}
 	
 	public void receiveDaillyMessage(byte[] message) {
