@@ -116,7 +116,8 @@
     <repository>
         <id>SpringCamelRelease</id>
         <name>Release Repository</name>
-        <url>http://localhost:8080/repositories/Spring-Camel-Release</url>
+        <!-- <url>http://localhost:8080/repositories/Spring-Camel-Release</url> -->
+        <url>file://D:/software/jboss/jboss-eap-6.4/standalone/deployments/repositories</url>
     </repository>
   </distributionManagement>
 
