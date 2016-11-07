@@ -116,7 +116,7 @@
     <repository>
         <id>SpringCamelRelease</id>
         <name>Release Repository</name>
-        <url>http://localhost:8081/nexus/content/repositories/Spring-Camel-Release</url>
+        <url>http://localhost:8080/repositories/Spring-Camel-Release</url>
     </repository>
   </distributionManagement>
 
